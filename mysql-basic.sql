@@ -7,7 +7,7 @@
 #
 # ホスト: localhost (MySQL 8.0.30)
 # データベース: mysql-basic
-# 生成時間: 2022-10-25 06:03:21 +0000
+# 生成時間: 2022-10-26 02:29:11 +0000
 # ************************************************************
 
 
@@ -18,6 +18,68 @@ SET NAMES utf8mb4;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE='NO_AUTO_VALUE_ON_ZERO', SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+# テーブルのダンプ item_orders
+# ------------------------------------------------------------
+
+CREATE TABLE `item_orders` (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `order_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `item_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` int DEFAULT '0',
+  `unit` int DEFAULT '0',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT 'Create Time',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `item_orders` WRITE;
+/*!40000 ALTER TABLE `item_orders` DISABLE KEYS */;
+
+INSERT INTO `item_orders` (`id`, `order_id`, `item_id`, `price`, `unit`, `create_time`)
+VALUES
+	(1,'1','1',2500,1,'2022-09-19 22:44:19'),
+	(2,'1','2',8300,1,'2022-09-19 22:44:32'),
+	(3,'1','5',800,1,'2022-09-19 22:45:12'),
+	(4,'2','2',8300,1,'2022-08-01 22:43:15'),
+	(5,'2','3',4000,1,'2022-08-01 22:43:15'),
+	(6,'3','5',800,3,'2022-08-23 23:05:43'),
+	(7,'4','3',4000,1,'2022-09-10 23:07:23'),
+	(8,'4','4',3300,1,'2022-09-10 23:07:23'),
+	(9,'5','3',4000,1,'2022-09-10 23:11:13'),
+	(10,'6','1',2500,2,'2022-09-29 23:12:38'),
+	(11,'7','4',3300,1,'2022-10-04 23:14:21'),
+	(12,'8','5',800,3,'2022-10-10 23:21:03');
+
+/*!40000 ALTER TABLE `item_orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# テーブルのダンプ items
+# ------------------------------------------------------------
+
+CREATE TABLE `items` (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `size` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` int DEFAULT '0',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT 'Create Time',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `items` WRITE;
+/*!40000 ALTER TABLE `items` DISABLE KEYS */;
+
+INSERT INTO `items` (`id`, `name`, `size`, `price`, `create_time`)
+VALUES
+	(1,'T-シャツ','S-L',2500,'2022-09-19 22:16:24'),
+	(2,'バックパック','free',8300,'2022-09-19 22:36:24'),
+	(3,'スニーカー','S-LL',4000,'2022-09-19 22:37:12'),
+	(4,'ペット用スニーカー','SS-L',3300,'2022-09-19 22:38:06'),
+	(5,'靴下','23~25,25~27',800,'2022-09-19 22:39:25');
+
+/*!40000 ALTER TABLE `items` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # テーブルのダンプ orders
@@ -47,6 +109,39 @@ VALUES
 	(8,9,'北海道札幌市',0,2400,'2022-10-10 23:21:03');
 
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# テーブルのダンプ users
+# ------------------------------------------------------------
+
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `age` smallint DEFAULT '0',
+  `gender` smallint DEFAULT '0',
+  `memo` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT 'Create Time',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+
+INSERT INTO `users` (`id`, `name`, `age`, `gender`, `memo`, `create_time`)
+VALUES
+	(1,'山田太郎',25,1,'今日もいい天気','2022-09-19 18:47:28'),
+	(2,'佐藤花子',24,2,NULL,'2022-09-19 18:47:28'),
+	(3,'田中次郎',39,1,'hello YouTube','2022-09-19 18:47:28'),
+	(4,'高橋よしこ',34,2,'水曜日は不在','2022-09-19 18:49:42'),
+	(5,'鈴木裕貴',18,1,NULL,'2022-09-19 18:50:43'),
+	(6,'山本もんじゃ',3,0,'柴犬','2022-09-19 18:51:13'),
+	(7,'小林マイク',29,1,'来月イギリス帰国','2022-09-19 18:51:13'),
+	(8,'山本ハツ江',89,2,NULL,'2022-09-19 18:53:51'),
+	(9,'松本幸太郎',54,1,'日中は携帯へ。','2022-09-19 18:54:47'),
+	(10,'木村アリサ',17,2,NULL,'2022-09-19 18:56:01');
+
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
